@@ -2,12 +2,11 @@
 -- Step 0 - Create a Query 
 ----------
 -- Query: Select all cats that have a toy with an id of 5
-
-    -- Your code here
-
+-- SELECT cats.name FROM cats join cat_toys ON cats.id = cat_toys.cat_id
+-- join toys on toys.id = cat_toys.toy_id WHERE toys.id = 5
 -- Paste your results below (as a comment):
 
-
+-- Rachele, Rodger, Jamal
 
 
 ----------
@@ -15,7 +14,8 @@
 ----------
 -- Query:
 
-    -- Your code here
+--  EXPLAIN QUERY PLAN SELECT cats.name FROM cats join cat_toys ON cats.id = cat_toys.cat_id
+-- join toys on toys.id = cat_toys.toy_id WHERE toys.id = 5
 
 -- Paste your results below (as a comment):
 
@@ -34,8 +34,19 @@
 -- Step 2 - Time the Query to get a baseline
 ----------
 -- Query (to be used in the sqlite CLI):
+CREATE UNIQUE INDEX cat_toys_idx ON cat_toys(cat_id, toy_id);
 
-    -- Your code here
+.timer on 
+EXPLAIN QUERY PLAN
+SELECT cats.name
+FROM cat_toys
+JOIN cats ON cats.id = cat_toys.cat_id
+JOIN toys ON toys.id = cat_toys.toy_id
+WHERE toys.id = 5;
+
+-- EXPLAIN QUERY PLAN SELECT cats.name FROM cats join cat_toys ON cats.id = cat_toys.cat_id
+-- join toys on toys.id = cat_toys.toy_id WHERE toys.id = 5;
+.timer off
 
 -- Paste your results below (as a comment):
 
@@ -48,7 +59,7 @@
 
 -- Create index:
 
-    -- Your code here
+
 
 -- Analyze Query:
     -- Your code here
